@@ -6,7 +6,7 @@ const Ws = require('ws');
     const init =()=>{
         bindEvent();
     }
-    init();
+ 
     function bindEvent(){
         server.on('open',handleOpen);
         server.on('close',handleClose);
@@ -30,6 +30,12 @@ const Ws = require('ws');
 
     }
     function handleMessage(msg){
-        console.log(msg);
+        server.clients.forEach(function (c){
+            c.send(msg.toString());
+        })
+        console.log(typeof(msg));
+        console.log(msg.toString());
+        console.log('后台收到的是'+ msg);
     }
+    init();
 })(Ws);
