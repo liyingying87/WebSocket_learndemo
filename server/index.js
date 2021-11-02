@@ -30,9 +30,11 @@ const Ws = require('ws');
 
     }
     function handleMessage(msg){
+        //接收到消息
         server.clients.forEach(function (c){
             c.send(msg.toString());
         })
+        console.log(msg);
         console.log(typeof(msg));
         console.log(msg.toString());
         console.log('后台收到的是'+ msg);
